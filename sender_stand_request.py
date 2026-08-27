@@ -3,16 +3,14 @@ import requests
 import data
 
 def post_new_user(body):
-    header = data.headers.copy()
-    header.pop("Authorization",None)
     return requests.post(configuration.URL_SERVICE + configuration.CREATE_USER_PATH,
                          json=body,
-                         headers=header)
+                         headers=data.headers)
 
-def post_new_kit(body,authToken):
-    header = data.headers.copy()
-    header["Authorization"] = "Bearer " + authToken
+def post_new_client_kit(body, authToken):
+    headers = data.headers.copy()
+    headers["Authorization"] = "Bearer " + authToken
 
     return requests.post(configuration.URL_SERVICE + configuration.KITS_PATH,
                   json=body,
-                  headers=header)
+                  headers=headers)
